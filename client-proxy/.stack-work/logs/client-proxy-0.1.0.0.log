@@ -1,0 +1,22 @@
+Preprocessing library client-proxy-0.1.0.0...
+[1 of 1] Compiling Lib              ( src/Lib.hs, .stack-work/dist/x86_64-linux-dkda49f7ca9b244180d3cfb1987cbc9743/Cabal-1.24.0.0/build/Lib.o )
+
+src/Lib.hs:67:17: error:
+    • Couldn't match type ‘[Char]’ with ‘CL.RequestBody’
+      Expected type: CL.RequestBody
+        Actual type: String
+    • In the second argument of ‘($)’, namely ‘show c’
+      In a stmt of a 'do' block: r <- send $ show c
+      In the expression:
+        do { r <- send $ show c;
+             a <- getResponce (decode r);
+             return a }
+
+src/Lib.hs:68:30: error:
+    • Couldn't match type ‘[Char]’
+                     with ‘Data.ByteString.Lazy.Internal.ByteString’
+      Expected type: Data.ByteString.Lazy.Internal.ByteString
+        Actual type: String
+    • In the first argument of ‘decode’, namely ‘r’
+      In the first argument of ‘getResponce’, namely ‘(decode r)’
+      In a stmt of a 'do' block: a <- getResponce (decode r)
