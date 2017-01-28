@@ -3,6 +3,7 @@
 {-# LANGUAGE TypeOperators   #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ExtendedDefaultRules #-}
+{-# LANGUAGE DeriveGeneric #-}
 module Lib
     ( startApp
     ) where
@@ -16,16 +17,32 @@ import Data.List.Split
 import Control.Monad.IO.Class
 import Database.MongoDB
 import Control.Monad.Trans (liftIO)
-import qualified Network.HTTP.Client as CL
+import Network.HTTP.Client (newManager, defaultManagerSettings)
+import GHC.Generics
+import Data.Proxy
+import Servant.Client
+import Servant.API
 
 data User = User
   { userName :: String
   , password :: String
-  } deriving (Eq, Show)
+  } deriving (Generic)
 
 $(deriveJSON defaultOptions ''User)
 
+type APIS = Capture "p" String :> ReqBody '[JSON] User :> Post '[JSON] [User]
+
+apis :: Proxy APIS
+apis = Proxy
+
+secureret = client apis
+
+query1 = secureret "login" (User "Simon" "asdf")
+
+
 type API = Capture "p" String :> Get '[JSON] [User]
+
+
 
 startApp :: IO ()
 startApp = do
@@ -50,6 +67,11 @@ userList t = do
     return u
 
 users :: String -> IO [User]
-users t = let c = encode (User {userName = "Simon", password = "asdf"}) in do
-    return a
+users t = do
+    manager <- newManager defaultManagerSettings
+    res <- runClientM $ query1 (ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
+    case res of
+        Left err -> return []
+        Right user -> do
+            return user
 
