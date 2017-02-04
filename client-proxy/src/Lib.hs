@@ -4,6 +4,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveAnyClass #-}
 module Lib
     ( startApp
     ) where
@@ -22,6 +23,7 @@ import GHC.Generics
 import Data.Proxy
 import Servant.Client
 import Servant.API
+import SecurityAPI
 
 data User = User
   { userName :: String
@@ -30,17 +32,34 @@ data User = User
 
 $(deriveJSON defaultOptions ''User)
 
-type APIS = Capture "p" String :> ReqBody '[JSON] User :> Post '[JSON] [User]
 
-apis :: Proxy APIS
-apis = Proxy
+-- query to security
 
-secureret = client apis
+--type APIS = "test" :> Capture "p" String :> ReqBody '[JSON] User :> Post '[JSON] [User]
 
-query1 = secureret "login" (User "Simon" "asdf")
+--apis :: Proxy APIS
+--apis = Proxy
 
+--secureret1 :: String -> User -> ClientM [User]
+
+--secureret1 = client apis
+
+--queries :: ClientM [User]
+--queries = do
+--    q2 <- secureret1 "asdf"
+--    return q2
+
+-- -------
 
 type API = Capture "p" String :> Get '[JSON] [User]
+
+apis :: Proxy securityAPI
+apis = Proxy
+
+query1 :: ClientM Bool
+query1 = do
+    q2 <- getSecurityUser (SecurityUser "Simon" "asdf")
+    return q2
 
 
 
@@ -69,9 +88,7 @@ userList t = do
 users :: String -> IO [User]
 users t = do
     manager <- newManager defaultManagerSettings
-    res <- runClientM $ query1 (ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
+    res <- runClientM query1 (ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
     case res of
         Left err -> return []
-        Right user -> do
-            return user
-
+        Right b -> return []

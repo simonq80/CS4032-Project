@@ -1,13 +1,13 @@
 
 ==================== FINAL INTERFACE ====================
-2017-01-28 22:02:53.568902638 UTC
+2017-02-04 16:27:09.011327728 UTC
 
 interface client-proxy-0.1.0.0-5MbByLF2LGy9XhzIXD22AJ:Lib [family instance module] 8001
-  interface hash: 6cc4dbd7cde02aabc922d5e6572de393
-  ABI hash: 3f478f1e274df6467e0ae98d4f803cc8
+  interface hash: 7169f1f8ca037ccd55fb868c21266653
+  ABI hash: ac89db9918c69507b05e163aed340562
   export-list hash: 75b918a658fdd0bf633f510035590352
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
-  flag hash: fde2fb9eae5a7f514fa1d13e9215f2e6
+  flag hash: ac86a13ea346275a8c30385240f6b858
   sig of: Nothing
   used TH splices: True
   where
@@ -195,9 +195,9 @@ import  -/  mongoDB-2.1.1.1@mongoDB-2.1.1.1-HGeHL7diW4ABP90GyOfvAQ:Database.Mong
 import  -/  mongoDB-2.1.1.1@mongoDB-2.1.1.1-HGeHL7diW4ABP90GyOfvAQ:Database.MongoDB.Query 7f4a8f4029b887fe33adfe07a0b305f3
 import  -/  mtl-2.2.1@mtl-2.2.1-6qsR1PHUy5lL47Hpoa4jCM:Control.Monad.Trans 0a058c68d8234a5f23a0f2e61a261faf
 import  -/  network-2.6.3.1@network-2.6.3.1-G4Up1CPKbp7DeFsnywOnGG:Network fe4a3a40192a968130a171e8dca1101b
+import  -/  servant-0.8.1@servant-0.8.1-C41nqWozRFwEkLnlLTnUQc:Servant.API f776f4c0cef16b5ab9071a6e137100c3
 import  -/  servant-0.8.1@servant-0.8.1-C41nqWozRFwEkLnlLTnUQc:Servant.API.Capture dd1eb741cb5c67f576e0df2ff0021b64
 import  -/  servant-0.8.1@servant-0.8.1-C41nqWozRFwEkLnlLTnUQc:Servant.API.ContentTypes 5e55115aa3ef54102b3605c0c11eed9b
-import  -/  servant-0.8.1@servant-0.8.1-C41nqWozRFwEkLnlLTnUQc:Servant.API.ReqBody 98142d00de3e855a083e52ddff76fcf9
 import  -/  servant-0.8.1@servant-0.8.1-C41nqWozRFwEkLnlLTnUQc:Servant.API.Sub e4e89bb4a51d80b0579d311b33f93ee7
 import  -/  servant-0.8.1@servant-0.8.1-C41nqWozRFwEkLnlLTnUQc:Servant.API.Verbs 5f4ac9be0cb9afced00422fa5dc5d9ab
 import  -/  servant-client-0.8.1@servant-client-0.8.1-L4KVGyLjl3E4Fgj7RNvyaP:Servant.Client c2ad50e6dec5931b45f81172b3d52fa4
@@ -873,13 +873,6 @@ f7ef06500222d832972bab5876f831e3
     Servant.API.Capture.Capture "p" GHC.Base.String
     Servant.API.Sub.:> Servant.API.Verbs.Get
                          '[Servant.API.ContentTypes.JSON] [Lib.User]
-7b62583fea75de4d66cf2020f9aaf2c3
-  type APIS =
-    Servant.API.Capture.Capture "p" GHC.Base.String
-    Servant.API.Sub.:> (Servant.API.ReqBody.ReqBody
-                          '[Servant.API.ContentTypes.JSON] Lib.User
-                        Servant.API.Sub.:> Servant.API.Verbs.Post
-                                             '[Servant.API.ContentTypes.JSON] [Lib.User])
 170e7a7976fcd181167fe021adf74787
   axiom Rep_User::
       GHC.Generics.Rep Lib.User
