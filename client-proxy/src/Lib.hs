@@ -30,6 +30,9 @@ import Servant.Client
 import Servant.API
 import SecurityAPI
 import ClientProxyAPI
+import DirectoryAPI
+import FileAPI
+import Data.Bson.Generic
 
 --data User = User
 --  { userName :: String
@@ -74,9 +77,10 @@ loginRequest u = do
 startApp :: IO ()
 startApp = do
     p <- pipe
-    doDBRequest p (insert "users" ["username" =: "Simon", "hash" =:"asdf"])
-    doDBRequest p (insert "users" ["username" =: "Leona", "hash" =:"qwer"])
-    doDBRequest p (insert "users" ["username" =: "John", "hash" =:"zxcv"])
+    doDBRequest p (insert "users" (toBSON (SecurityUser "simon" "asdf")))
+    (Just r) <- doDBRequest p (findOne $ select [] "users")
+    putStrLn $ show $ head r
+    putStrLn $ show $ head $ tail r
     run 8081 app
 
 
@@ -97,30 +101,75 @@ setNewUser :: SecurityUser -> IO Bool
 setNewUser u = do
     p <- pipe
     doDBRequest p (delete $ select [] "users")
-    doDBRequest p (insert "users" ["username" =: (username u), "password" =:(password u)])
+    doDBRequest p (insert "users" (toBSON u))
     return True
 
 
 readF :: FileDetails -> Handler FileDetails
-readF _ = return (FileDetails "" "" "")
+readF fd = do
+    x <- liftIO $ readFIO fd
+    return x
 
 writeF :: FileDetails -> Handler Bool
 writeF _ = return True
 
 
+readFIO :: FileDetails -> IO FileDetails
+readFIO fd = do 
+    (Just sd) <- securityLogin
+    (Just fl) <- getFileLoc fd sd
+    (Just nfd) <- readFileIn fd fl
+    return nfd
 
-{-|}
 
-userList :: String -> Handler [User]
-userList t = do
-    u <- liftIO $ users t
-    return u
 
-users :: String -> IO [User]
-users t = do
+
+
+-- authenticates with the security server, getting token
+securityLogin :: IO (Maybe ServerDetails)
+securityLogin = do
+    p <- pipe
+    (Just r) <- doDBRequest p (findOne $ select [] "users")
     manager <- newManager defaultManagerSettings
-    res <- runClientM query1 (ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
+    res <- runClientM (loginQuery $ getFromBSON r)(ClientEnv manager (BaseUrl Http "localhost" 8081 ""))
     case res of
-        Left err -> return []
-        Right b -> return []
-|-}
+        Left err -> return Nothing
+        Right r -> return r
+    where   getFromBSON r = case fromBSON r of
+                            Just u -> u
+                            Nothing -> SecurityUser "" ""
+
+loginQuery :: SecurityUser -> ClientM (Maybe ServerDetails)
+loginQuery u = do
+    q <- loginSecurityUser u
+    return q
+
+
+-- gets file location from directory server
+getFileLoc :: FileDetails -> ServerDetails -> IO (Maybe ServerDetails)
+getFileLoc f s = do
+    manager <- newManager defaultManagerSettings
+    res <- runClientM (fileLocQuery (f, s))(ClientEnv manager (BaseUrl Http "localhost" 8082 ""))
+    case res of
+        Left err -> return Nothing
+        Right r -> return r
+
+fileLocQuery :: (FileDetails, ServerDetails)-> ClientM (Maybe ServerDetails)
+fileLocQuery u = do
+    q <- getFileLocation u
+    return q
+
+
+--reads file from file server
+readFileIn :: FileDetails -> ServerDetails -> IO (Maybe FileDetails)
+readFileIn f s = do
+    manager <- newManager defaultManagerSettings
+    res <- runClientM (fileReadQuery (f, s))(ClientEnv manager (BaseUrl Http "localhost" 8083 ""))
+    case res of
+        Left err -> return Nothing
+        Right r -> return r
+
+fileReadQuery :: (FileDetails, ServerDetails) -> ClientM (Maybe FileDetails)
+fileReadQuery u = do
+    q <- FileAPI.readFile u
+    return q
