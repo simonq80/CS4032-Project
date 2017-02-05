@@ -5,6 +5,11 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Lib
     ( startApp
     ) where
@@ -24,13 +29,14 @@ import Data.Proxy
 import Servant.Client
 import Servant.API
 import SecurityAPI
+import ClientProxyAPI
 
-data User = User
-  { userName :: String
-  , password :: String
-  } deriving (Generic)
+--data User = User
+--  { userName :: String
+--  , password :: String
+--  } deriving (Generic)
 
-$(deriveJSON defaultOptions ''User)
+-- $(deriveJSON defaultOptions ''User)
 
 
 -- query to security
@@ -51,34 +57,59 @@ $(deriveJSON defaultOptions ''User)
 
 -- -------
 
-type API = Capture "p" String :> Get '[JSON] [User]
+--type API = Capture "p" String :> Get '[JSON] [User]
+pipe :: IO Pipe
+pipe = connect $ Host "database" (PortNumber 27017)
 
-apis :: Proxy securityAPI
-apis = Proxy
+doDBRequest p req = do
+    access p master "main" req
 
-query1 :: ClientM Bool
-query1 = do
-    q2 <- getSecurityUser (SecurityUser "Simon" "asdf")
-    return q2
+loginRequest :: SecurityUser -> ClientM (Maybe ServerDetails)
+loginRequest u = do
+    q <- loginSecurityUser u
+    return q
 
 
 
 startApp :: IO ()
 startApp = do
-    pipe <- connect $ Host "database" (PortNumber 27017)
-    access pipe master "users" (insert "users" ["username" =: "Simon", "hash" =:"asdf"])
-    access pipe master "users" (insert "users" ["username" =: "Leona", "hash" =:"qwer"])
-    access pipe master "users" (insert "users" ["username" =: "John", "hash" =:"zxcv"])
+    p <- pipe
+    doDBRequest p (insert "users" ["username" =: "Simon", "hash" =:"asdf"])
+    doDBRequest p (insert "users" ["username" =: "Leona", "hash" =:"qwer"])
+    doDBRequest p (insert "users" ["username" =: "John", "hash" =:"zxcv"])
     run 8081 app
 
+
+
 app :: Application
-app = serve api server
+app = serve clientProxyAPI server
 
-api :: Proxy API
-api = Proxy
+server :: Server ClientProxyAPI
+server = setCreds :<|> readF :<|> writeF
 
-server :: Server API
-server = userList
+
+setCreds :: SecurityUser -> Handler Bool
+setCreds u = do
+    x <- liftIO $ setNewUser u
+    return x
+
+setNewUser :: SecurityUser -> IO Bool
+setNewUser u = do
+    p <- pipe
+    doDBRequest p (delete $ select [] "users")
+    doDBRequest p (insert "users" ["username" =: (username u), "password" =:(password u)])
+    return True
+
+
+readF :: FileDetails -> Handler FileDetails
+readF _ = return (FileDetails "" "" "")
+
+writeF :: FileDetails -> Handler Bool
+writeF _ = return True
+
+
+
+{-|}
 
 userList :: String -> Handler [User]
 userList t = do
@@ -92,3 +123,4 @@ users t = do
     case res of
         Left err -> return []
         Right b -> return []
+|-}
