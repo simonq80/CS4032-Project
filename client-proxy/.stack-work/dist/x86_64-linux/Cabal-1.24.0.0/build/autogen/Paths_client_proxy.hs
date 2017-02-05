@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/simon/CS4032-Project/client-proxy/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/bin"
-libdir     = "/home/simon/CS4032-Project/client-proxy/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/lib/x86_64-linux-ghc-8.0.1/client-proxy-0.1.0.0-3bDg31TrBNr9sZTifPuUCU"
+libdir     = "/home/simon/CS4032-Project/client-proxy/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/lib/x86_64-linux-ghc-8.0.1/client-proxy-0.1.0.0-9Cpmz0lKqvHK6YQ1xNmbpc"
 datadir    = "/home/simon/CS4032-Project/client-proxy/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/share/x86_64-linux-ghc-8.0.1/client-proxy-0.1.0.0"
 libexecdir = "/home/simon/CS4032-Project/client-proxy/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/libexec"
 sysconfdir = "/home/simon/CS4032-Project/client-proxy/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/etc"

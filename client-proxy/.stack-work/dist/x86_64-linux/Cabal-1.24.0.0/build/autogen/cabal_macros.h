@@ -7,6 +7,13 @@
   (major1) == 0 && (major2) <  1 || \
   (major1) == 0 && (major2) == 1 && (minor) <= 0)
 
+/* package CS4032-API-0.1.0.0 */
+#define VERSION_CS4032_API "0.1.0.0"
+#define MIN_VERSION_CS4032_API(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  1 || \
+  (major1) == 0 && (major2) == 1 && (minor) <= 0)
+
 /* package aeson-1.0.2.1 */
 #define VERSION_aeson "1.0.2.1"
 #define MIN_VERSION_aeson(major1,major2,minor) (\
@@ -203,7 +210,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "client-proxy-0.1.0.0-3bDg31TrBNr9sZTifPuUCU"
+#define CURRENT_COMPONENT_ID "client-proxy-0.1.0.0-9Cpmz0lKqvHK6YQ1xNmbpc"
 
-#define CURRENT_PACKAGE_KEY "client-proxy-0.1.0.0-3bDg31TrBNr9sZTifPuUCU"
+#define CURRENT_PACKAGE_KEY "client-proxy-0.1.0.0-9Cpmz0lKqvHK6YQ1xNmbpc"
 

@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-02-04 19:39:23.801485 UTC
+2017-02-05 15:34:25.90394 UTC
 
 interface main@main:Main 8001
-  interface hash: 2e6938102729d4d59f8ec7439460db00
-  ABI hash: 84fb6a73eec52fb03f85ca80ceeff0d5
-  export-list hash: 7b335017e76c0d4c8a0adc95927cc5fb
+  interface hash: dd76f91d1232b825ae10416d29275477
+  ABI hash: 9c56f015403775c92e17545d69d89d44
+  export-list hash: f4d14284cfc615e2b0ecb525486c945b
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 94789b68d70c9e0732ee87d51a1d10c2
   sig of: Nothing
@@ -14,7 +14,8 @@ interface main@main:Main 8001
 exports:
   Main.main
 module dependencies:
-package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov
+package dependencies: CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN
+                      MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov
                       aeson-1.0.2.1@aeson-1.0.2.1-B1H7uvY9HnXH2BYsViQp5P
                       appar-0.1.4@appar-0.1.4-1in4Ewd8JBkAYDZSWXLSe0
                       array-0.5.1.1@array-0.5.1.1
@@ -35,7 +36,7 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       bytestring-0.10.8.1@bytestring-0.10.8.1
                       case-insensitive-1.2.0.7@case-insensitive-1.2.0.7-FlqweN7AuKj9EdU2arVEt4
                       cipher-aes-0.2.11@cipher-aes-0.2.11-6IDqXzfBW6B3WK2bKJbiBh
-                      client-proxy-0.1.0.0@client-proxy-0.1.0.0-3bDg31TrBNr9sZTifPuUCU
+                      client-proxy-0.1.0.0@client-proxy-0.1.0.0-9Cpmz0lKqvHK6YQ1xNmbpc
                       containers-0.5.7.1@containers-0.5.7.1
                       cookie-0.4.2.1@cookie-0.4.2.1-2a2c54yIyBn79Ul3iLWclJ
                       cprng-aes-0.6.1@cprng-aes-0.6.1-COLYQrn2KP0KrG5tq2u9OS
@@ -137,7 +138,7 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzF
                          base-4.9.0.0:Data.Version base-4.9.0.0:Data.Void
                          base-4.9.0.0:GHC.Exts base-4.9.0.0:GHC.Generics
                          base-4.9.0.0:GHC.IO.Exception base-4.9.0.0:GHC.TypeLits
-                         client-proxy-0.1.0.0@client-proxy-0.1.0.0-3bDg31TrBNr9sZTifPuUCU:Lib
+                         client-proxy-0.1.0.0@client-proxy-0.1.0.0-9Cpmz0lKqvHK6YQ1xNmbpc:Lib
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntMap.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntSet.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
@@ -179,7 +180,7 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzF
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed.Base
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
-import  -/  client-proxy-0.1.0.0@client-proxy-0.1.0.0-3bDg31TrBNr9sZTifPuUCU:Lib e6c0f07f0fae1a8b9a70160f9180761e
+import  -/  client-proxy-0.1.0.0@client-proxy-0.1.0.0-9Cpmz0lKqvHK6YQ1xNmbpc:Lib 14bc6602f0484756a6be00f3c218f1e3
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
 d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule :: GHC.Types.Module
@@ -193,12 +194,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-0fa2c16afb83cacbfc10b214acbd3a56
+8a5d849039cecb963b5201e5791451a3
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-ea5da7cc1ee36ef19b6ffd32c6fd6f3c
+121ff2ecb55b6fb73a8fdbf32e06daab
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
