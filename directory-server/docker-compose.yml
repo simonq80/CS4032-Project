@@ -10,10 +10,10 @@ use-haskell:
     # - http_proxy=http://www-proxy.scss.tcd.ie:8080
   command: /usr/local/bin/use-haskell-exe
   ports:
-    - "8081:8081"
+    - "8082:8082"
   links:
     - database
 database:
   image: mongo:3.0.2
   ports:
-    - "27018:27017"
+    - "27019:27017"
