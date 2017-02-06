@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2017-02-05 19:38:11.249436 UTC
+2017-02-06 20:59:46.93251 UTC
 
 interface client-proxy-0.1.0.0-9Cpmz0lKqvHK6YQ1xNmbpc:Lib 8001
-  interface hash: 61ecc2afea366f42d84a008b970cf355
-  ABI hash: 89526245b555d04324fdd930545f3334
-  export-list hash: e45935a472250db9ea0716d3954c86a9
-  orphan hash: 4b7d31a6916702dc21c5477d4498b5ff
+  interface hash: fde8d0c30813dd1573adf7145b22b931
+  ABI hash: 23fe8b7e21f45d452fdfaa7f089fbbf7
+  export-list hash: 9a4e747fd9ed9374558948054ad0bb0a
+  orphan hash: a8eb355fd9dcf077c6f4b59b015f4e4b
   flag hash: bcbdc1cc4d67b60b772ea8ada7db589b
   sig of: Nothing
   used TH splices: False
@@ -130,7 +130,8 @@ orphans: CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:SecurityAP
          transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Fusion.Bundle
          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed
-family instance modules: CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:SecurityAPI
+family instance modules: CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:ClientProxyAPI
+                         CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:SecurityAPI
                          attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.Internal.Types
                          base-4.9.0.0:Control.Applicative base-4.9.0.0:Data.Complex
                          base-4.9.0.0:Data.Either base-4.9.0.0:Data.Functor.Compose
@@ -182,10 +183,10 @@ family instance modules: CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeN
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed
                          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed.Base
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
-import  -/  CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:ClientProxyAPI b42d32350ee9c00bafcae21773e70a27
-import  -/  CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:DirectoryAPI ed0c3d9dbea9434a3a0e863bc4e87276
-import  -/  CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:FileAPI f63f2e798d1c301555573b0709936874
-import  -/  CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:SecurityAPI 05ace220b1c9cf686072a85bf8f49a13
+import  -/  CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:ClientProxyAPI a870312eee445113d3c9cdb5f3a3b804
+import  -/  CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:DirectoryAPI a84f553ee33febdb1cda1e02cace4935
+import  -/  CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:FileAPI c229b5f2fe4c5c5a9738a247457057be
+import  -/  CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:SecurityAPI cc4fce8c8a1af92d3e0a6e63cfc0900d
 import  -/  aeson-1.0.2.1@aeson-1.0.2.1-B1H7uvY9HnXH2BYsViQp5P:Data.Aeson 2415c6bce1076dc070afe5e155fae7ce
 import  -/  aeson-1.0.2.1@aeson-1.0.2.1-B1H7uvY9HnXH2BYsViQp5P:Data.Aeson.TH 0183af7dbc93fb366657bb24811e6d79
 import  -/  base-4.9.0.0:Control.Monad.IO.Class d702028d883e700bd7066b031147030d
@@ -197,6 +198,7 @@ import  -/  base-4.9.0.0:GHC.List 13d2451194c1c6e53b4f4f07947736dd
 import  -/  base-4.9.0.0:GHC.Show 952347a6ab730bcb25c0854d8bc6ca51
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
 import  -/  base-4.9.0.0:System.IO eb1d40aa793a4047069a5023f2ebcfe3
+import  -/  base-4.9.0.0:Text.Read 9c1be14f7e5eac8b18bcb566c5763677
 import  -/  bson-generic-0.0.8@bson-generic-0.0.8-HjHLZPRZTvYCcXcEWSgvyH:Data.Bson.Generic 2a8bd2b814727bedc488b638c0f568ee
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
 import  -/  http-client-0.5.4@http-client-0.5.4-8OXQ3VKSGE55qlHrf9SyXP:Network.HTTP.Client 1bb209f0da55f6991936824ccb96e10d
@@ -284,7 +286,7 @@ cf1ff3820f3258f64570b2c8658332df
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa -}
-a73d7effd8dbf758d92fe7668e28d303
+24189fdd3d28d3000dfaf4187b3a39c8
   $s$fAllCTRender:a4 ::
     Servant.API.ContentTypes.AllCTRender
       '[Servant.API.ContentTypes.JSON] ClientProxyAPI.FileDetails
@@ -316,13 +318,13 @@ a73d7effd8dbf758d92fe7668e28d303
                        `cast`
                      (Sym (Servant.API.ContentTypes.N:AllMime[0] <'[]>_N))
                      Lib.$s$fAllCTRender:a_$dAllMimeRender) -}
-d8c39ee7e2e725b94b9a141cf5863120
+f53704ba83d0b7710528a15e7d76d09b
   $s$fAllCTRender:a5 ::
     Data.Proxy.Proxy '[Servant.API.ContentTypes.JSON]
     -> ClientProxyAPI.FileDetails
     -> [(Network.HTTP.Media.MediaType.Internal.MediaType,
          Data.ByteString.Lazy.Internal.ByteString)]
-  {- Arity: 2, Strictness: <L,A><L,1*U(1*U,1*U,1*U)>m2,
+  {- Arity: 2, Strictness: <L,A><L,1*U(U,U,U)>m2,
      Unfolding: InlineRule (2, True, False)
                 (\ (eta :: Data.Proxy.Proxy '[Servant.API.ContentTypes.JSON])
                    (eta1 :: ClientProxyAPI.FileDetails) ->
@@ -334,14 +336,14 @@ d8c39ee7e2e725b94b9a141cf5863120
                    (GHC.Types.[]
                       @ (Network.HTTP.Media.MediaType.Internal.MediaType,
                          Data.ByteString.Lazy.Internal.ByteString))) -}
-b702e4fcefeb6ec1c851db1b634cb15e
+7c2382bbc6d71d543dcc645357058680
   $s$fAllCTRender:a_$dAllMimeRender ::
     Servant.API.ContentTypes.AllMimeRender
       '[Servant.API.ContentTypes.JSON] ClientProxyAPI.FileDetails
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 Lib.$s$fAllCTRender:a_$s$fAllMimeRender:a1 -}
-fa8a4dfef81e173d042ca8ca39aa633d
+f52c256663742d5b4cc5c346cee70a16
   $s$fAllCTRender:a_$dMimeRender ::
     Servant.API.ContentTypes.MimeRender
       Servant.API.ContentTypes.JSON ClientProxyAPI.FileDetails
@@ -361,7 +363,7 @@ c1bf49d5667110581a2da1db8580b8c7
                      @ GHC.Types.Bool
                      Lib.$s$fAllCTRender:a3)
                   Lib.$s$fAllCTRender:a2 -}
-563f430170d6d5805a02689eba556cbe
+be5b815bff18fe672572fd248d9b082d
   $s$fAllCTRender:a_$s$fAllMimeRender:a1 ::
     Servant.API.ContentTypes.AllMimeRender
       '[Servant.API.ContentTypes.JSON] ClientProxyAPI.FileDetails
@@ -387,7 +389,7 @@ c1bf49d5667110581a2da1db8580b8c7
                      @ GHC.Types.Bool
                      Data.Aeson.Types.ToJSON.$fToJSONBool)
                   Lib.$s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cmimeRender -}
-0297b0171c6a59608b4f1e21987a076a
+60edac0ffbaa6d3fed8dfbf261603737
   $s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa1 ::
     Servant.API.ContentTypes.MimeRender
       Servant.API.ContentTypes.JSON ClientProxyAPI.FileDetails
@@ -409,12 +411,12 @@ c1bf49d5667110581a2da1db8580b8c7
                 (\ (ds :: Data.Proxy.Proxy Servant.API.ContentTypes.JSON)
                    (eta :: GHC.Types.Bool) ->
                  Lib.$s$fAllCTRender:a_$sencode eta) -}
-fa7e57407f79432ecbef6a7da16d4a56
+b2b71b36e2e7bc557e53b0f9263df8d6
   $s$fAllCTRender:a_$s$fMimeRenderTYPEJSONa_$cmimeRender1 ::
     Data.Proxy.Proxy Servant.API.ContentTypes.JSON
     -> ClientProxyAPI.FileDetails
     -> Data.ByteString.Lazy.Internal.ByteString
-  {- Arity: 2, Strictness: <L,A><L,1*U(1*U,1*U,1*U)>,
+  {- Arity: 2, Strictness: <L,A><L,1*U(U,U,U)>,
      Unfolding: InlineRule (1, True, True)
                 (\ (ds :: Data.Proxy.Proxy Servant.API.ContentTypes.JSON)
                    (eta :: ClientProxyAPI.FileDetails) ->
@@ -430,7 +432,7 @@ f27416a8f8052d91365a9562b18f99d6
                      `cast`
                    (Data.Aeson.Encoding.Internal.N:Encoding'[0]
                         <Data.Aeson.Types.Internal.Value>_P)) -}
-768cf861a432f0727420b24610560ee8
+6c256f50a4fc276588e0e0bca22ca402
   $s$fAllMimeUnrender:a ::
     Servant.API.ContentTypes.AllMimeUnrender
       '[Servant.API.ContentTypes.JSON] ClientProxyAPI.FileDetails
@@ -452,14 +454,14 @@ f27416a8f8052d91365a9562b18f99d6
                      Lib.$s$fAllMimeUnrender:a1
                      (Servant.API.ContentTypes.$fAllMimeUnrender[]a
                         @ ClientProxyAPI.FileDetails)) -}
-236b7ed49ee17fadc2643c778c8fd79d
+11a855d353b31684a11fad4acc4b1ecd
   $s$fAllMimeUnrender:a1 ::
     Servant.API.ContentTypes.MimeUnrender
       Servant.API.ContentTypes.JSON ClientProxyAPI.FileDetails
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 ClientProxyAPI.$s$fMimeUnrenderTYPEJSONa -}
-b7e81b9550c75ff8cb7f95cf5afc1f05
+6cdd43dee03f76a0dbddaa8e7574f034
   $s$fAllMimeUnrender:a2 ::
     Servant.API.ContentTypes.AllMimeUnrender
       '[Servant.API.ContentTypes.JSON] SecurityAPI.SecurityUser
@@ -481,14 +483,14 @@ b7e81b9550c75ff8cb7f95cf5afc1f05
                      Lib.$s$fAllMimeUnrender:a_$dMimeUnrender
                      (Servant.API.ContentTypes.$fAllMimeUnrender[]a
                         @ SecurityAPI.SecurityUser)) -}
-1c303f9e970eb75e657faed91892dfca
+5faedd6341f5c90652dcc601e86404b7
   $s$fAllMimeUnrender:a_$dMimeUnrender ::
     Servant.API.ContentTypes.MimeUnrender
       Servant.API.ContentTypes.JSON SecurityAPI.SecurityUser
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 Lib.$s$fAllMimeUnrender:a_$s$fMimeUnrenderTYPEJSONa -}
-e7965bfabee20b104dc9d558c58e6617
+6500dfa1e8a9b3faa6e418cd66e3eb52
   $s$fAllMimeUnrender:a_$s$fMimeUnrenderTYPEJSONa ::
     Servant.API.ContentTypes.MimeUnrender
       Servant.API.ContentTypes.JSON SecurityAPI.SecurityUser
@@ -501,7 +503,7 @@ e7965bfabee20b104dc9d558c58e6617
                      @ SecurityAPI.SecurityUser
                      SecurityAPI.$fFromJSONSecurityUser)
                   Lib.$s$fAllMimeUnrender:a_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender -}
-4647ec0ce54955ac1052275955dca11c
+885d43649d07667a2a9a302ff9ec7387
   $s$fAllMimeUnrender:a_$s$fMimeUnrenderTYPEJSONa_$cmimeUnrender ::
     Data.Proxy.Proxy Servant.API.ContentTypes.JSON
     -> Data.ByteString.Lazy.Internal.ByteString
@@ -514,7 +516,7 @@ e7965bfabee20b104dc9d558c58e6617
                    @ SecurityAPI.SecurityUser
                    SecurityAPI.$fFromJSONSecurityUser
                    eta) -}
-7d16d2f4d99950d6b95e223fe3ea907f
+2c001e8a0747251e4c017bcb8e30ac75
   $sserve10 ::
     Data.Proxy.Proxy '[Servant.API.ContentTypes.JSON]
     -> Data.ByteString.Lazy.Internal.ByteString
@@ -577,7 +579,7 @@ bcb85c1a615d470ba79c14c0384e25cb
 2eeba210b8d16734151ca63a949e2ea3
   $sserve5 :: GHC.Integer.Type.Integer
   {- HasNoCafRefs, Unfolding: (200) -}
-f2eaa6ba112a59cc4e6ea042131ca9b0
+f7737a880bbc09cf7f289e2df7ab82be
   $sserve6 ::
     Data.Proxy.Proxy '[Servant.API.ContentTypes.JSON]
     -> Data.ByteString.Lazy.Internal.ByteString

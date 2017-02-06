@@ -1,11 +1,11 @@
 
 ==================== FINAL INTERFACE ====================
-2017-01-26 19:45:06.212968 UTC
+2017-02-06 21:07:07.531749 UTC
 
 interface main@main:Main 8001
-  interface hash: 8e78bc406b9d1e7668bba90bcfc1a2cf
-  ABI hash: f7341a31a5d6ff7cfcaba9bee15375f6
-  export-list hash: ed3d0b2fdc989eb446d65f9b521c77a0
+  interface hash: 66705b8914daa93e6fa4c94a533a8050
+  ABI hash: 52d3eb7f99c2ff7c1f67303c99ad51da
+  export-list hash: 4a0e487b501a8360f3ca6d6f70c632ef
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: 94789b68d70c9e0732ee87d51a1d10c2
   sig of: Nothing
@@ -14,7 +14,8 @@ interface main@main:Main 8001
 exports:
   Main.main
 module dependencies:
-package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov
+package dependencies: CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN
+                      MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov
                       aeson-1.0.2.1@aeson-1.0.2.1-B1H7uvY9HnXH2BYsViQp5P
                       appar-0.1.4@appar-0.1.4-1in4Ewd8JBkAYDZSWXLSe0
                       array-0.5.1.1@array-0.5.1.1
@@ -30,26 +31,31 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       blaze-html-0.8.1.3@blaze-html-0.8.1.3-8MBPJsFNBtBBD2gWERenva
                       blaze-markup-0.7.1.1@blaze-markup-0.7.1.1-IE161DWDHNXF9O8bBguli5
                       bson-0.3.2.3@bson-0.3.2.3-2brx7LeeW55ANg6eHk4tth
+                      bson-generic-0.0.8@bson-generic-0.0.8-HjHLZPRZTvYCcXcEWSgvyH
                       byteable-0.1.1@byteable-0.1.1-15aIBCArSOBEnGxArzrDTM
                       byteorder-1.0.4@byteorder-1.0.4-BbL4c17EpZrL9PcZm0xys9
                       bytestring-0.10.8.1@bytestring-0.10.8.1
                       case-insensitive-1.2.0.7@case-insensitive-1.2.0.7-FlqweN7AuKj9EdU2arVEt4
                       cipher-aes-0.2.11@cipher-aes-0.2.11-6IDqXzfBW6B3WK2bKJbiBh
                       containers-0.5.7.1@containers-0.5.7.1
+                      cookie-0.4.2.1@cookie-0.4.2.1-2a2c54yIyBn79Ul3iLWclJ
                       cprng-aes-0.6.1@cprng-aes-0.6.1-COLYQrn2KP0KrG5tq2u9OS
                       crypto-cipher-types-0.0.9@crypto-cipher-types-0.0.9-Iwzx9devSK6HQoOjujg46u
                       crypto-random-0.0.9@crypto-random-0.0.9-GQAZIw8UH93GFERaAFFYYo
                       cryptohash-0.11.9@cryptohash-0.11.9-23AVtyc3C6s6I4gG82vFOM
                       cryptonite-0.20@cryptonite-0.20-L0WtRxCVTKUzsOFseop3b
                       data-binary-ieee754-0.4.4@data-binary-ieee754-0.4.4-F1HjhwdV1xx5grS0eMjeg2
+                      data-default-class-0.1.2.0@data-default-class-0.1.2.0-FYQpjIylblBDctdkHAFeXA
                       deepseq-1.4.2.0@deepseq-1.4.2.0 directory-1.2.6.2@directory-1.2.6.2
                       dlist-0.8.0.2@dlist-0.8.0.2-GWAMmbX9rLg3tqrbOizHGv
+                      exceptions-0.8.3@exceptions-0.8.3-7py7fmRxowDFpHmiHGKrTb
                       file-embed-0.0.10@file-embed-0.0.10-IXfudWSq57y1Athysk5ifZ
                       filepath-1.4.1.0@filepath-1.4.1.0
                       ghc-boot-th-8.0.1@ghc-boot-th-8.0.1 ghc-prim-0.5.0.0
                       hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G
                       hashtables-1.2.1.0@hashtables-1.2.1.0-97BixhaJIWTIDAaThqJujl
                       http-api-data-0.3.3@http-api-data-0.3.3-CeBY15DYJGS8anNt5LiYPY
+                      http-client-0.5.4@http-client-0.5.4-8OXQ3VKSGE55qlHrf9SyXP
                       http-date-0.0.6.1@http-date-0.0.6.1-150spKQYCuoIrltdbMmYGs
                       http-media-0.6.4@http-media-0.6.4-82jDVCpdN5H696EFF5l5I4
                       http-types-0.9.1@http-types-0.9.1-8WdUZL4twHzANJbxvb1Aoj
@@ -71,10 +77,12 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       psqueues-0.2.2.3@psqueues-0.2.2.3-YN2xKllZOMJLtAgRHlkEw
                       random-1.1@random-1.1-54KmMHXjttlERYcr1mvsAe
                       random-shuffle-0.0.4@random-shuffle-0.0.4-LfeDYNPfwrQ2o9p6tw2M9l
+                      safe-0.3.10@safe-0.3.10-1VyrsjWhmjvGnGud5lgW7f
                       scientific-0.3.4.9@scientific-0.3.4.9-6oTYuCcx6H5BsTGU7D2Gk3
                       securemem-0.1.9@securemem-0.1.9-AlUbMorzPNe4lwnV15ASIa
-                      security-0.1.0.0@security-0.1.0.0-5eSX2eyYfiFEL4opUJJfsF
+                      security-0.1.0.0@security-0.1.0.0-9R8uy6pILmwG6AQ9q2pCmg
                       servant-0.9.1.1@servant-0.9.1.1-4LXo6hv7OEC5tIMss7W4mt
+                      servant-client-0.9.1.1@servant-client-0.9.1.1-F4beMBFBUa96Q3jlcLsioP
                       servant-server-0.9.1.1@servant-server-0.9.1.1-6r4jpBEDqMcECcD9smU0Pi
                       simple-sendfile-0.2.25@simple-sendfile-0.2.25-FZS0Stqtwd5AOyFRQgM4IV
                       split-0.2.3.1@split-0.2.3.1-IJKK4pOCYGKud0jZImZke
@@ -101,13 +109,16 @@ package dependencies: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozO
                       warp-3.2.9@warp-3.2.9-1srGDEsq7RWF9RsucFj6bw
                       word8-0.1.2@word8-0.1.2-2E1SgvvAV2fK8vZPDHbRan
                       zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV
-orphans: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov:Control.Monad.Random
+orphans: CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:SecurityAPI
+         MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov:Control.Monad.Random
          attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.ByteString.Char8
          attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.Text.Internal
          base-4.9.0.0:GHC.Base base-4.9.0.0:GHC.Float
          binary-0.8.3.0@binary-0.8.3.0:Data.Binary.Generic
+         bson-generic-0.0.8@bson-generic-0.0.8-HjHLZPRZTvYCcXcEWSgvyH:Data.Bson.Generic
          bytestring-0.10.8.1@bytestring-0.10.8.1:Data.ByteString.Builder
          hashable-1.2.4.0@hashable-1.2.4.0-EMu4H7FB10MAl6hwKw992G:Data.Hashable.Generic
+         http-client-0.5.4@http-client-0.5.4-8OXQ3VKSGE55qlHrf9SyXP:Network.HTTP.Client.Request
          mongoDB-2.1.1.1@mongoDB-2.1.1.1-EYetaM3840PFwD4TvpqJfm:Database.MongoDB.Internal.Util
          network-2.6.3.1@network-2.6.3.1-G4Up1CPKbp7DeFsnywOnGG:Network.Socket
          stm-2.4.4.1@stm-2.4.4.1-4z2NRWnB0NIIUvSJsHW0kF:Control.Monad.STM
@@ -120,7 +131,9 @@ orphans: MonadRandom-0.4.2.3@MonadRandom-0.4.2.3-8TfCm6PGvGYB7omozORhov:Control.
          transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Error
          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Fusion.Bundle
          vector-0.11.0.0@vector-0.11.0.0-BEDZb5o2QOhGbIm6ky7rl6:Data.Vector.Unboxed
-family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.Internal.Types
+family instance modules: CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:ClientProxyAPI
+                         CS4032-API-0.1.0.0@CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN:SecurityAPI
+                         attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzFS6V3sZR:Data.Attoparsec.Internal.Types
                          base-4.9.0.0:Control.Applicative base-4.9.0.0:Data.Complex
                          base-4.9.0.0:Data.Either base-4.9.0.0:Data.Functor.Compose
                          base-4.9.0.0:Data.Functor.Const base-4.9.0.0:Data.Functor.Identity
@@ -130,6 +143,7 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzF
                          base-4.9.0.0:Data.Version base-4.9.0.0:Data.Void
                          base-4.9.0.0:GHC.Exts base-4.9.0.0:GHC.Generics
                          base-4.9.0.0:GHC.IO.Exception base-4.9.0.0:GHC.TypeLits
+                         bson-generic-0.0.8@bson-generic-0.0.8-HjHLZPRZTvYCcXcEWSgvyH:Data.Bson.Generic
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntMap.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.IntSet.Base
                          containers-0.5.7.1@containers-0.5.7.1:Data.Map.Base
@@ -138,6 +152,7 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzF
                          dlist-0.8.0.2@dlist-0.8.0.2-GWAMmbX9rLg3tqrbOizHGv:Data.DList
                          ghc-boot-th-8.0.1@ghc-boot-th-8.0.1:GHC.LanguageExtensions.Type
                          http-api-data-0.3.3@http-api-data-0.3.3-CeBY15DYJGS8anNt5LiYPY:Web.Internal.FormUrlEncoded
+                         http-client-0.5.4@http-client-0.5.4-8OXQ3VKSGE55qlHrf9SyXP:Network.HTTP.Client
                          iproute-1.7.1@iproute-1.7.1-9hsGfRvggCmFA0ueZi5Sd9:Data.IP.Addr
                          iproute-1.7.1@iproute-1.7.1-9hsGfRvggCmFA0ueZi5Sd9:Data.IP.Range
                          monad-control-1.0.1.0@monad-control-1.0.1.0-HoNEBoNfniX3vjSfkI7WTT:Control.Monad.Trans.Control
@@ -149,6 +164,9 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzF
                          servant-0.9.1.1@servant-0.9.1.1-4LXo6hv7OEC5tIMss7W4mt:Servant.API.IsSecure
                          servant-0.9.1.1@servant-0.9.1.1-4LXo6hv7OEC5tIMss7W4mt:Servant.API.Verbs
                          servant-0.9.1.1@servant-0.9.1.1-4LXo6hv7OEC5tIMss7W4mt:Servant.Utils.Links
+                         servant-client-0.9.1.1@servant-client-0.9.1.1-F4beMBFBUa96Q3jlcLsioP:Servant.Client
+                         servant-client-0.9.1.1@servant-client-0.9.1.1-F4beMBFBUa96Q3jlcLsioP:Servant.Common.BaseUrl
+                         servant-client-0.9.1.1@servant-client-0.9.1.1-F4beMBFBUa96Q3jlcLsioP:Servant.Common.Req
                          servant-server-0.9.1.1@servant-server-0.9.1.1-6r4jpBEDqMcECcD9smU0Pi:Servant.Server.Internal
                          servant-server-0.9.1.1@servant-server-0.9.1.1-6r4jpBEDqMcECcD9smU0Pi:Servant.Server.Internal.BasicAuth
                          tagged-0.8.5@tagged-0.8.5-CtgV6EcN0do8F92i1S6iYx:Data.Tagged
@@ -168,7 +186,7 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzF
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
-import  -/  security-0.1.0.0@security-0.1.0.0-5eSX2eyYfiFEL4opUJJfsF:Lib df267a115ba5fb0a1af406ed4a619f93
+import  -/  security-0.1.0.0@security-0.1.0.0-9R8uy6pILmwG6AQ9q2pCmg:Lib 2b108a3d8181f349a4d6d3fcb2020bfd
 d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
@@ -181,12 +199,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-dc1f2c6d7a0a36381ba532a1c1730a67
+b41e925935fa2172e86629304fdd7fad
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-f42badb30a61dff06be20e8a30acb63b
+3565e59746ea99e5038b387079488e8f
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)

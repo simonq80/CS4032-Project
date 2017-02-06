@@ -1,13 +1,13 @@
 name:                security
 version:             0.1.0.0
-synopsis:            Initial project template from stack
+synopsis:            Security Server
 description:         Please see README.md
-homepage:            https://github.com/esjmb/use-haskell#readme
+homepage:            https://github.com/simonq80/CS4032-Project
 license:             BSD3
 license-file:        LICENSE
-author:              Stephen Barrett
-maintainer:          Stephen.Barrett@tcd.ie
-copyright:           2016
+author:              Simon Quigley
+maintainer:          siquigle@tcd.ie
+copyright:           2017
 category:            test
 build-type:          Simple
 -- extra-source-files:
@@ -36,6 +36,7 @@ library
                      , mtl
                      , http-client
                      , split
+                     , CS4032-API
   default-language:    Haskell2010
 
 executable use-haskell-exe
@@ -57,4 +58,4 @@ test-suite use-haskell-test
 
 source-repository head
   type:     git
-  location: https://github.com/esjmb/use-haskell
+  location: https://github.com/simonq80/CS4032-Project

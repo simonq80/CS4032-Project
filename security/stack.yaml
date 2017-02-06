@@ -16,10 +16,10 @@
 #  name: custom-snapshot
 #  location: "./custom-snapshot.yaml"
 #resolver: nightly-2016-12-10
-resolver: lts-7.10
+resolver: nightly-2016-12-10
 
 docker:
-  enable: true # warning!
+  enable: false # warning!
 
 # stack image container 
 image:
@@ -50,9 +50,9 @@ packages:
   - location:
       git: https://github.com/Palmik/bson-generic.git
       commit: e078def65d0dee1ea7e3205f445e47d5937851f3
-#  - location:
-#     git: https://esjmb@bitbucket.org/esjmb/use-haskell-api.git
-#     commit: 9a48929
+  - location:
+      git: https://github.com/simonq80/CS4032-API.git
+      commit: a981f8abf19f20dd4021314da0c542d536cc9d0a
 
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)

@@ -81,7 +81,7 @@ startApp = do
     (Just r) <- doDBRequest p (findOne $ select [] "users")
     putStrLn $ show $ head r
     putStrLn $ show $ head $ tail r
-    run 8081 app
+    run 8080 app
 
 
 
@@ -121,7 +121,12 @@ readFIO fd = do
     (Just nfd) <- readFileIn fd fl
     return nfd
 
-
+writeFIO :: FileDetails -> IO FileDetails
+writeFIO fd = do 
+    (Just sd) <- securityLogin
+    (Just fl) <- getFileLoc fd sd
+    (Just nfd) <- writeFileIn fd fl
+    return nfd
 
 
 
@@ -149,7 +154,7 @@ loginQuery u = do
 getFileLoc :: FileDetails -> ServerDetails -> IO (Maybe ServerDetails)
 getFileLoc f s = do
     manager <- newManager defaultManagerSettings
-    res <- runClientM (fileLocQuery (f, s))(ClientEnv manager (BaseUrl Http "localhost" 8082 ""))
+    res <- runClientM (fileLocQuery (f, s))(ClientEnv manager (BaseUrl Http (serverip s) (read $ serverport s) "")) --directory server
     case res of
         Left err -> return Nothing
         Right r -> return r
@@ -164,7 +169,7 @@ fileLocQuery u = do
 readFileIn :: FileDetails -> ServerDetails -> IO (Maybe FileDetails)
 readFileIn f s = do
     manager <- newManager defaultManagerSettings
-    res <- runClientM (fileReadQuery (f, s))(ClientEnv manager (BaseUrl Http "localhost" 8083 ""))
+    res <- runClientM (fileReadQuery (f, s))(ClientEnv manager (BaseUrl Http (serverip s) (read $ serverport s) "")) --file server
     case res of
         Left err -> return Nothing
         Right r -> return r
@@ -172,4 +177,18 @@ readFileIn f s = do
 fileReadQuery :: (FileDetails, ServerDetails) -> ClientM (Maybe FileDetails)
 fileReadQuery u = do
     q <- FileAPI.readFile u
+    return q
+
+--writes file to file server
+writeFileIn :: FileDetails -> ServerDetails -> IO (Maybe FileDetails)
+writeFileIn f s = do
+    manager <- newManager defaultManagerSettings
+    res <- runClientM (fileWriteQuery (f, s))(ClientEnv manager (BaseUrl Http (serverip s) (read $ serverport s) "")) --file server
+    case res of
+        Left err -> return Nothing
+        Right r -> return $ Just f
+
+fileWriteQuery :: (FileDetails, ServerDetails) -> ClientM Bool
+fileWriteQuery u = do
+    q <- FileAPI.writeFile u
     return q

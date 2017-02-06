@@ -3,6 +3,13 @@
 {-# LANGUAGE TypeOperators   #-}
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE ExtendedDefaultRules #-}
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE DeriveAnyClass #-}
+{-# LANGUAGE FlexibleInstances #-}
+{-# LANGUAGE GeneralizedNewtypeDeriving #-}
+{-# LANGUAGE MultiParamTypeClasses #-}
+{-# LANGUAGE ScopedTypeVariables #-}
+
 module Lib
     ( startApp
     ) where
@@ -16,44 +23,77 @@ import Data.List.Split
 import Control.Monad.IO.Class
 import Database.MongoDB
 import Control.Monad.Trans (liftIO)
+import Network.HTTP.Client (newManager, defaultManagerSettings)
+import GHC.Generics
+import Data.Proxy
+import Servant.Client
+import Servant.API
+import SecurityAPI
+import ClientProxyAPI
+import DirectoryAPI
+import FileAPI
+import Data.Bson.Generic
 
 
-data User = User
-  { userName :: String
-  , password :: String
-  } deriving (Eq, Show)
+directoryServerDetails = ServerDetails "localhost" "8082" ""
 
-$(deriveJSON defaultOptions ''User)
+pipe :: IO Pipe
+pipe = connect $ Host "database" (PortNumber 27017)
 
-type API = Capture "p" String :> ReqBody '[JSON] User :> Post '[JSON] [User]
-
+doDBRequest p req = do
+    access p master "main" req
 
 startApp :: IO ()
 startApp = do
-    pipe <- connect (host "database")
-    access pipe master "users" (insert "users" ["username" =: "Simon", "hash" =:"asdf"])
-    access pipe master "users" (insert "users" ["username" =: "Leona", "hash" =:"qwer"])
-    access pipe master "users" (insert "users" ["username" =: "John", "hash" =:"zxcv"])
-    run 8080 app
+    p <- pipe
+    doDBRequest p (insert "users" (toBSON (SecurityUser "simon" "asdf")))
+    run 8081 app
+
+
 
 app :: Application
-app = serve api server
+app = serve securityAPI server
 
-api :: Proxy API
-api = Proxy
+server :: Server SecurityAPI
+server = doLogin :<|> doAddUser :<|> doRemoveUser
 
-server :: Server API
-server = userList
 
-userList :: String -> User -> Handler [User]
-userList t usr = do
-    u <- liftIO $ users t usr
-    return u
+doLogin :: SecurityUser -> Handler (Maybe ServerDetails)
+doLogin u = do
+    x <- liftIO $ doLoginIO u
+    return x
 
-users :: String -> User -> IO [User]
-users t u = do
-    pipe <- connect (host "database")
-    c <- access pipe master "users" (count (select ["username" =: (userName u), "hash" =: (password u)] "users"))
-    if (c >= 0) then return $ [User (userName u) (password u)]
-                else return $ []
+doLoginIO :: SecurityUser -> IO (Maybe ServerDetails)
+doLoginIO u = do
+    p <- pipe
+    c <- doDBRequest p (count $ select ["username" =: (username u), "password" =: (password u)] "users")
+    case c of
+        0 -> return Nothing
+        _ -> return $ Just directoryServerDetails --return directory server location
+
+
+
+
+doAddUser :: SecurityUser -> Handler Bool
+doAddUser u = do
+    x <- liftIO $ doAddUserIO u
+    return x
+
+
+doAddUserIO :: SecurityUser -> IO Bool
+doAddUserIO u = do
+    p <- pipe
+    doDBRequest p (insert "users" (toBSON u))
+    return True
+
+doRemoveUser :: SecurityUser -> Handler Bool
+doRemoveUser u = do 
+    x <- liftIO $ doRemoveUserIO u
+    return x
+
+doRemoveUserIO:: SecurityUser -> IO Bool
+doRemoveUserIO u = do 
+    p <- pipe
+    doDBRequest p (delete $ select ["username" =: (username u), "password" =: (password u)] "users")
+    return True
 
