@@ -45,32 +45,46 @@ doDBRequest p req = do
 startApp :: IO ()
 startApp = do
     p <- pipe
-    doDBRequest p (insert "servers" (toBSON (ServerDetails "localhost" "8083" "")))
-    doDBRequest p (insert "files" (toBSON (FileServerDetails (FileDetails "1234" "asdf.txt" "") (ServerDetails "localhost" "8083" ""))))
+    doDBRequest p (insert "files" (toBSON (FileDetails "1234" "asdf.txt" "")))
+    doDBRequest p (insert "tokens" (toBSON (ServerDetails "" "" "token1")))
     run 8083 app
 
 
 
 app :: Application
-app = serve directoryAPI server
+app = serve fileAPI server
 
-server :: Server DirectoryAPI
-server = doGetFileLocation :<|> doAddToken :<|> doPropogateWrite
+server :: Server FileAPI
+server = doReadFile :<|> doWriteFile :<|> doAddToken
 
 
-doGetFileLocation :: (FileDetails, ServerDetails) -> Handler (Maybe ServerDetails)
-doGetFileLocation a = do
-    x <- liftIO $ doGetFileLocationIO a
+doReadFile :: (FileDetails, ServerDetails) -> Handler (Maybe FileDetails)
+doReadFile a = do
+    x <- liftIO $ doReadFileIO a
     return x
 
-doGetFileLocationIO :: (FileDetails, ServerDetails) -> IO (Maybe ServerDetails)
-doGetFileLocationIO (fd, sd) = do 
+doReadFileIO :: (FileDetails, ServerDetails) -> IO (Maybe FileDetails)
+doReadFileIO (fd, sd) = do 
     p <- pipe
-    return Nothing
+    tokenvalid <- doDBRequest p (count $ select ["token" =: (token sd)] "tokens")
+    case tokenvalid of
+        0 -> return Nothing
+        _ -> do
+            r <- doDBRequest p (findOne $ select ["filename" =: (filename fd)] "files")
+            case r of
+                Nothing -> return Nothing
+                Just x -> return $ fromBSON x
 
-doAddToken :: (ServerDetails, ServerDetails) -> Handler Bool
+
+                
+
+
+
+doWriteFile :: (FileDetails, ServerDetails) -> Handler Bool
+doWriteFile x = return False
+
+doAddToken :: ServerDetails -> Handler Bool
 doAddToken x = return False
 
-doPropogateWrite :: (FileDetails, ServerDetails) -> Handler Bool
-doPropogateWrite x = return False
+
 

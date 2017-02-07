@@ -72,7 +72,7 @@ cRead = do
     putStrLn "Enter File Id (if known)"
     i <- getLine
     manager <- newManager defaultManagerSettings
-    res <- runClientM (readFileQuery $ CPA.FileDetails n i "")(ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
+    res <- runClientM (readFileQuery $ CPA.FileDetails i n "")(ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
     case res of
         Left err -> putStrLn "Error reading file"
         Right fd -> do
@@ -85,7 +85,7 @@ cWrite = do
     fp <- getLine
     fc <- readFile fp 
     manager <- newManager defaultManagerSettings
-    res <- runClientM (writeFileQuery $ CPA.FileDetails fp "" fc)(ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
+    res <- runClientM (writeFileQuery $ CPA.FileDetails "" fp fc)(ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
     case res of
         Right True -> putStrLn "File Sucessfully Written"
         _ -> putStrLn "Error writing file"
