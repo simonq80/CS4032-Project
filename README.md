@@ -17,7 +17,7 @@ In each services directory run:
 - [ ] Transactions
 - [ ] Caching 
 - [ ] Locking
-- [ ] Example Client Application
+- [x] Example Client Application
 
 ## Client Proxy
 Client Proxy handles communication to all other servers to read/write a file.
