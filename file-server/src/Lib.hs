@@ -28,6 +28,7 @@ import GHC.Generics
 import Data.Proxy
 import Servant.Client
 import Servant.API
+import APIDataTypes
 import SecurityAPI
 import ClientProxyAPI
 import DirectoryAPI
@@ -76,15 +77,30 @@ doReadFileIO (fd, sd) = do
                 Just x -> return $ fromBSON x
 
 
-                
-
-
 
 doWriteFile :: (FileDetails, ServerDetails) -> Handler Bool
-doWriteFile x = return False
+doWriteFile a = do
+    x <- liftIO $ doWriteFileIO a
+    return x
+
+doWriteFileIO :: (FileDetails, ServerDetails) -> IO Bool
+doWriteFileIO (fd, sd) = do
+    p <- pipe
+    doDBRequest p (delete $ select ["filename" =: (filename fd)] "files")
+    doDBRequest p (insert "files" (toBSON fd))
+    return True
+
 
 doAddToken :: ServerDetails -> Handler Bool
-doAddToken x = return False
+doAddToken a = do
+    x <- liftIO $ doAddTokenIO a
+    return x
+
+doAddTokenIO :: ServerDetails -> IO Bool
+doAddTokenIO sd = do
+    p <- pipe
+    doDBRequest p (insert "tokens" (toBSON sd))
+    return True
 
 
 

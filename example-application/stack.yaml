@@ -52,7 +52,7 @@ packages:
       commit: e078def65d0dee1ea7e3205f445e47d5937851f3
   - location:
       git: https://github.com/simonq80/CS4032-API.git
-      commit: 9b7de7a8a156aae0a312808d4826a3bb11fde30f
+      commit: b1e0b92cecd0c47835620d3c4bad1807fa23503f
 
 # Dependency packages to be pulled from upstream that are not in the resolver
 # (e.g., acme-missiles-0.3)

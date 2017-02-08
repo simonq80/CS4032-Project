@@ -27,6 +27,7 @@ import Network.HTTP.Client (newManager, defaultManagerSettings)
 import GHC.Generics
 import Data.Proxy
 import Servant.Client
+import APIDataTypes
 import Servant.API
 import SecurityAPI
 import qualified ClientProxyAPI as CPA
@@ -72,11 +73,11 @@ cRead = do
     putStrLn "Enter File Id (if known)"
     i <- getLine
     manager <- newManager defaultManagerSettings
-    res <- runClientM (readFileQuery $ CPA.FileDetails i n "")(ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
+    res <- runClientM (readFileQuery $ FileDetails i n "")(ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
     case res of
         Left err -> putStrLn "Error reading file"
         Right fd -> do
-            writeFile (CPA.filename fd) (CPA.filecontents fd)
+            writeFile (filename fd) (filecontents fd)
             putStrLn $ "file successfully copied to local"
 
 cWrite :: IO ()
@@ -85,7 +86,7 @@ cWrite = do
     fp <- getLine
     fc <- readFile fp 
     manager <- newManager defaultManagerSettings
-    res <- runClientM (writeFileQuery $ CPA.FileDetails "" fp fc)(ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
+    res <- runClientM (writeFileQuery $ FileDetails "" fp fc)(ClientEnv manager (BaseUrl Http "localhost" 8080 ""))
     case res of
         Right True -> putStrLn "File Sucessfully Written"
         _ -> putStrLn "Error writing file"
@@ -95,12 +96,12 @@ setCredQuery u = do
     q <- CPA.setCredentials u
     return q
 
-readFileQuery :: CPA.FileDetails -> ClientM CPA.FileDetails
+readFileQuery :: FileDetails -> ClientM FileDetails
 readFileQuery f = do
     q <- CPA.readFile f
     return q
 
-writeFileQuery :: CPA.FileDetails -> ClientM Bool
+writeFileQuery :: FileDetails -> ClientM Bool
 writeFileQuery f = do
     q <- CPA.writeFile f
     return q

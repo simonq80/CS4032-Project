@@ -28,6 +28,7 @@ import GHC.Generics
 import Data.Proxy
 import Servant.Client
 import Servant.API
+import APIDataTypes
 import SecurityAPI
 import ClientProxyAPI
 import DirectoryAPI
