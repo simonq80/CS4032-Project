@@ -12,7 +12,7 @@ In each services directory run:
 - [x] Client Proxy
 - [x] Security Server
 - [ ] Directory Server
-- [ ] File Server
+- [x] File Server
 - [ ] Encryption
 - [ ] Transactions
 - [ ] Caching 
