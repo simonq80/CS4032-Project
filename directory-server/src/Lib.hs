@@ -47,7 +47,7 @@ startApp :: IO ()
 startApp = do
     p <- pipe
     doDBRequest p (insert "servers" (toBSON (ServerDetails "localhost" "8083" "")))
-    doDBRequest p (insert "files" (toBSON (FileServerDetails (FileDetails "1234" "asdf.txt" "") (ServerDetails "localhost" "8083" ""))))
+    doDBRequest p (insert "files" (toBSON (FileServerDetails "1234" "asdf.txt" "" "localhost" "8083" "")))
     run 8082 app
 
 
@@ -63,14 +63,36 @@ doGetFileLocation :: (FileDetails, ServerDetails) -> Handler (Maybe ServerDetail
 doGetFileLocation a = do
     x <- liftIO $ doGetFileLocationIO a
     return x
+    
 
-doGetFileLocationIO :: (FileDetails, ServerDetails) -> IO (Maybe ServerDetails)
+doGetFileLocationIO :: (FileDetails, ServerDetails) -> IO (Maybe ServerDetails) --TODO: add new file case & token validation
 doGetFileLocationIO (fd, sd) = do 
     p <- pipe
-    return Nothing
+    r <- doDBRequest p (findOne $ select ["fileid1" =: (fileid fd)] "servers")
+    case r of
+        Nothing -> do
+            r1 <- doDBRequest p (findOne $ select ["filename1" =: (filename fd)] "servers")
+            case r1 of
+                Nothing -> return Nothing
+                Just x -> case fromBSON x of
+                    Nothing -> return Nothing
+                    Just x -> return $ Just (ServerDetails (serverip1 x) (serverport1 x) (token1 x))
+        Just y -> case fromBSON y of
+            Nothing -> return Nothing
+            Just x -> return $ Just (ServerDetails (serverip1 x) (serverport1 x) (token1 x))
 
 doAddToken :: (ServerDetails, ServerDetails) -> Handler Bool
-doAddToken x = return False
+doAddToken a = do
+    x <- liftIO $ doAddTokenIO a
+    return x
+
+
+doAddTokenIO :: (ServerDetails, ServerDetails) -> IO Bool
+doAddTokenIO (sd, fd) = do
+    p <- pipe
+    doDBRequest p (insert "tokens" (toBSON (ServerDetails "" "" "token1")))
+    return True
+
 
 doPropogateWrite :: (FileDetails, ServerDetails) -> Handler Bool
 doPropogateWrite x = return False
