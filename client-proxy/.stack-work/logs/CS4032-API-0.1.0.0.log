@@ -1,9 +1,10 @@
 Configuring CS4032-API-0.1.0.0...
 Preprocessing library CS4032-API-0.1.0.0...
-[1 of 4] Compiling SecurityAPI      ( src/SecurityAPI.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/SecurityAPI.o )
-[2 of 4] Compiling ClientProxyAPI   ( src/ClientProxyAPI.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/ClientProxyAPI.o )
-[3 of 4] Compiling DirectoryAPI     ( src/DirectoryAPI.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/DirectoryAPI.o )
-[4 of 4] Compiling FileAPI          ( src/FileAPI.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/FileAPI.o )
+[1 of 5] Compiling APIDataTypes     ( src/APIDataTypes.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/APIDataTypes.o )
+[2 of 5] Compiling ClientProxyAPI   ( src/ClientProxyAPI.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/ClientProxyAPI.o )
+[3 of 5] Compiling DirectoryAPI     ( src/DirectoryAPI.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/DirectoryAPI.o )
+[4 of 5] Compiling FileAPI          ( src/FileAPI.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/FileAPI.o )
+[5 of 5] Compiling SecurityAPI      ( src/SecurityAPI.hs, .stack-work/dist/x86_64-linux/Cabal-1.24.0.0/build/SecurityAPI.o )
 Installing library in
 /home/simon/CS4032-Project/client-proxy/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/lib/x86_64-linux-ghc-8.0.1/CS4032-API-0.1.0.0-EgQQtGNHqecCoPqeNdGKhN
 Registering CS4032-API-0.1.0.0...

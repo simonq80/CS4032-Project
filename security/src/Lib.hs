@@ -34,9 +34,16 @@ import ClientProxyAPI
 import DirectoryAPI
 import FileAPI
 import Data.Bson.Generic
+import System.Random
+import System.IO.Unsafe
+import Crypto.Cipher.AES
+import qualified Data.ByteString as DBS
 
 
 directoryServerDetails = ServerDetails "localhost" "8082" ""
+
+serverToken :: DBS.ByteString
+serverToken = "la9GkQyMK6TdCNHf"
 
 pipe :: IO Pipe
 pipe = connect $ Host "database" (PortNumber 27017)
@@ -70,10 +77,11 @@ doLoginIO u = do
     c <- doDBRequest p (count $ select ["username" =: (username u), "password" =: (password u)] "users")
     case c of
         0 -> return Nothing
-        _ -> return $ Just directoryServerDetails --return directory server location
-
-
-
+        _ -> do
+            tok <- genUserToken
+            etok <- encryptToken tok
+            sendTokenToDir (ServerDetails "" "" etok)
+            return $ Just $ ServerDetails (serverip directoryServerDetails) (serverport directoryServerDetails) etok --return directory server location
 
 doAddUser :: SecurityUser -> Handler Bool
 doAddUser u = do
@@ -97,4 +105,25 @@ doRemoveUserIO u = do
     p <- pipe
     doDBRequest p (delete $ select ["username" =: (username u), "password" =: (password u)] "users")
     return True
+
+genUserToken :: IO String 
+genUserToken = do 
+    g <- newStdGen
+    return $ take 10 $ randoms g
+
+encryptToken :: String -> IO String
+encryptToken sd = 
+    return $ show $ encryptECB (initAES serverToken) (read sd)
+
+
+sendTokenToDir :: ServerDetails -> IO ()
+sendTokenToDir sd = do 
+    manager <- newManager defaultManagerSettings
+    res <- runClientM (tokenQuery (sd, sd)) (ClientEnv manager (BaseUrl Http "localhost" 8082 ""))
+    return ()
+
+tokenQuery :: (ServerDetails, ServerDetails) -> ClientM Bool
+tokenQuery u = do
+    q <- DirectoryAPI.addToken u
+    return q
 

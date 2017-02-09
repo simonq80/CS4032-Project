@@ -68,12 +68,16 @@ doGetFileLocation a = do
 doGetFileLocationIO :: (FileDetails, ServerDetails) -> IO (Maybe ServerDetails) --TODO: add new file case & token validation
 doGetFileLocationIO (fd, sd) = do 
     p <- pipe
-    r <- doDBRequest p (findOne $ select ["fileid1" =: (fileid fd)] "servers")
+    r <- doDBRequest p (findOne $ select ["fileid1" =: (fileid fd)] "files")
     case r of
         Nothing -> do
-            r1 <- doDBRequest p (findOne $ select ["filename1" =: (filename fd)] "servers")
+            r1 <- doDBRequest p (findOne $ select ["filename1" =: (filename fd)] "files")
             case r1 of
-                Nothing -> return Nothing
+                Nothing -> do
+                    r2 <- doDBRequest p (findOne $ select [] "servers")
+                    case r2 of
+                        Nothing -> return Nothing
+                        Just x -> return $ fromBSON x
                 Just x -> case fromBSON x of
                     Nothing -> return Nothing
                     Just x -> return $ Just (ServerDetails (serverip1 x) (serverport1 x) (token1 x))
@@ -88,9 +92,9 @@ doAddToken a = do
 
 
 doAddTokenIO :: (ServerDetails, ServerDetails) -> IO Bool
-doAddTokenIO (sd, fd) = do
+doAddTokenIO (sd1, sd2) = do
     p <- pipe
-    doDBRequest p (insert "tokens" (toBSON (ServerDetails "" "" "token1")))
+    doDBRequest p (insert "tokens" (toBSON sd1))
     return True
 
 

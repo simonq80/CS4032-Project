@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/simon/CS4032-Project/security/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/bin"
-libdir     = "/home/simon/CS4032-Project/security/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/lib/x86_64-linux-ghc-8.0.1/security-0.1.0.0-9R8uy6pILmwG6AQ9q2pCmg"
+libdir     = "/home/simon/CS4032-Project/security/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/lib/x86_64-linux-ghc-8.0.1/security-0.1.0.0-HrqDAYtlM3h47lPJht7y0l"
 datadir    = "/home/simon/CS4032-Project/security/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/share/x86_64-linux-ghc-8.0.1/security-0.1.0.0"
 libexecdir = "/home/simon/CS4032-Project/security/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/libexec"
 sysconfdir = "/home/simon/CS4032-Project/security/.stack-work/install/x86_64-linux/nightly-2016-12-10/8.0.1/etc"
