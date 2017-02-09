@@ -1,5 +1,6 @@
 # CS4032-Project
-Work in Progress, to be completed by 10th Feb
+
+NOTE: This does not run, unfinished
 
 API pulled from https://github.com/simonq80/CS4032-API
 
@@ -11,7 +12,7 @@ In each services directory run:
 ## TODO:
 - [x] Client Proxy
 - [x] Security Server
-- [ ] Directory Server
+- [x] Directory Server
 - [x] File Server
 - [ ] Encryption
 - [ ] Transactions
