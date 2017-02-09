@@ -15,6 +15,7 @@ In each services directory run:
 - [x] Directory Server
 - [x] File Server
 - [ ] Encryption
+- [ ] Replication
 - [ ] Transactions
 - [ ] Caching 
 - [ ] Locking
