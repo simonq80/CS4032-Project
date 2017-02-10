@@ -48,5 +48,6 @@ Contains actual files
   * Takes file info
   * Writes to DB
   * Returns true on success
-
+  
+(File and Server Details datatypes are used to pass tokens and file request partially filled)
 
